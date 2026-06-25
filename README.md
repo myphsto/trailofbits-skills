@@ -34,13 +34,13 @@ codex plugin add <plugin-name>@trailofbits
 
 OpenCode discovers skills natively via the bundled `.opencode/plugins/` JS plugin.
 
-Add the plugin to your `opencode.json` (global or project-level):
+- Tell OpenCode:
 
-```json
-{ "plugin": ["trailofbits/skills@git+https://github.com/trailofbits/skills.git"] }
-```
+  ```
+  Fetch and follow instructions from https://raw.githubusercontent.com/trailofbits/skills/main/.opencode/INSTALL.md
+  ```
 
-Or clone this repo and run OpenCode from within it — the plugin loads automatically.
+- Or read the install guide directly: [.opencode/INSTALL.md](.opencode/INSTALL.md)
 
 ### Local Development
 
