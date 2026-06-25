@@ -10,7 +10,8 @@ import fs from 'fs';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const pluginsRoot = path.resolve(__dirname, '../../plugins');
+const packageRoot = path.resolve(__dirname, '../..');
+const pluginsRoot = path.join(packageRoot, 'plugins');
 
 function discoverSkillDirs() {
   const dirs = [];
