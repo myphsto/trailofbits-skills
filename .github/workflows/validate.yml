@@ -110,8 +110,7 @@ jobs:
 
       - name: Install OpenCode CLI
         run: |
-          npm install --global --prefix "$RUNNER_TEMP/opencode-cli" @opencode/agent@latest
-          echo "$RUNNER_TEMP/opencode-cli/bin" >> "$GITHUB_PATH"
+          curl -fsSL https://opencode.ai/install | bash
           opencode --version
 
       - name: Check OpenCode loadability
