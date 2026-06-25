@@ -32,23 +32,25 @@
 
 ## Technical Reference
 
-### Codex Compatibility
+### Cross-Platform Compatibility
 
-This repository uses Claude plugin marketplace metadata as the canonical source for both Claude Code and Codex. Codex supports `.claude-plugin/marketplace.json` and `plugins/<name>/.claude-plugin/plugin.json` directly, so do not add duplicate Codex-only sidecar metadata.
+This repository uses Claude plugin marketplace metadata as the canonical source for Claude Code and Codex. Codex supports `.claude-plugin/marketplace.json` and `plugins/<name>/.claude-plugin/plugin.json` directly. OpenCode loads skills natively via `.opencode/plugins/trailofbits-skills.js`, which auto-registers all `plugins/*/skills/` directories.
 
 Rules:
 
 - Do not add `.agents/plugins/marketplace.json`, `.codex/`, or `plugins/<name>/.codex-plugin/`.
 - Keep plugin components at the plugin root using Codex-compatible default paths: `skills/`, `hooks/hooks.json`, `.mcp.json`, and `.app.json`.
 - If a plugin needs MCP configuration, put it in `.mcp.json` at the plugin root rather than embedding an object in `.claude-plugin/plugin.json`.
+- The OpenCode plugin at `.opencode/plugins/trailofbits-skills.js` requires no manual updates — it auto-discovers all skills.
 - Before submitting, run:
 
 ```sh
 python3 .github/scripts/check_claude_loadability.py
 python3 .github/scripts/check_codex_loadability.py
+python3 .github/scripts/check_opencode_loadability.py
 ```
 
-- If this check fails in CI, update the canonical Claude marketplace or plugin root components so Codex can load them through Claude marketplace compatibility.
+- If a check fails in CI, update the canonical Claude marketplace or plugin root components so all platforms can load them.
 
 ### Plugin Structure
 
@@ -207,6 +209,7 @@ Before submitting:
 - [ ] No hardcoded paths (`/Users/...`, `/home/...`)
 - [ ] `python3 .github/scripts/check_claude_loadability.py` passes
 - [ ] `python3 .github/scripts/check_codex_loadability.py` passes
+- [ ] `python3 .github/scripts/check_opencode_loadability.py` passes
 
 **Quality (reviewers check these):**
 - [ ] Description triggers correctly (third-person, specific)
