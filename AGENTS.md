@@ -29,6 +29,7 @@
 - [getsentry/skills](https://github.com/getsentry/skills) — Production Sentry skills; `security-review` is a standout routing + progressive disclosure example
 
 **For Claude:** Use the `claude-code-guide` subagent for plugin/skill questions - it has access to official documentation.
+**For OpenCode:** Use the built-in `customize-opencode` skill — it covers plugin structure, config schema, and skill frontmatter rules.
 
 ## Technical Reference
 
@@ -72,6 +73,8 @@ plugins/
 ```
 
 **Important**: Component directories (`skills/`, `commands/`, `agents/`, `hooks/`) must be at the plugin root, NOT inside `.claude-plugin/`. Only `plugin.json` belongs in `.claude-plugin/`.
+
+**Note for OpenCode:** The bundled `.opencode/plugins/trailofbits-skills.js` auto-discovers all `plugins/*/skills/` directories — no per-plugin metadata file is needed for OpenCode. OpenCode reads the SKILL.md frontmatter directly.
 
 ### Frontmatter
 
@@ -221,6 +224,7 @@ Before submitting:
 - [ ] Plugin has README.md
 - [ ] Added to root README.md table
 - [ ] Registered in root `.claude-plugin/marketplace.json` (repo-level, not the plugin's own `.claude-plugin/`)
+- [ ] Skills auto-discovered by OpenCode (no extra step needed — `.opencode/plugins/trailofbits-skills.js` picks up new `plugins/*/skills/` dirs)
 - [ ] Added to CODEOWNERS with plugin-specific ownership (`/plugins/<name>/ @gh-username @dguido`)
   - To find the GitHub username: run `gh api user --jq .login` (most reliable — uses authenticated GitHub identity)
 
