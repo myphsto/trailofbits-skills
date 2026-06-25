@@ -110,7 +110,7 @@ jobs:
 
       - name: Install OpenCode CLI
         run: |
-          npm install --global --prefix "$RUNNER_TEMP/opencode-cli" @opencode-ai/opencode@latest
+          npm install --global --prefix "$RUNNER_TEMP/opencode-cli" opencode-ai@latest
           echo "$RUNNER_TEMP/opencode-cli/bin" >> "$GITHUB_PATH"
           "$RUNNER_TEMP/opencode-cli/bin/opencode" --version
 
